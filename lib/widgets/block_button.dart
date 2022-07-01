@@ -11,7 +11,6 @@ class BlockButton extends StatelessWidget {
       fontSize: 18,
       //fontWeight: FontWeight.bold,
       fontFamily: 'Purrisima',
-      
     ),
     padding: const EdgeInsets.all(18), //padding interno do botão
     shape: RoundedRectangleBorder(
