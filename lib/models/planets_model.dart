@@ -66,6 +66,35 @@ class Planets {
         "geography": geography,
     };
 
+    String? get description => _stringDes(id: id[0]);
+
+    static String? _stringDes({required String id}) {
+    switch (id) {
+      case '0':
+        return 'Estrela Central do Sistema Solar';
+      case '1':
+        return 'Menor e mais interno do Sistema Solar';
+      case '2':
+        return 'Segundo planeta do Sistema Solar';
+      case '3':
+        return 'Nosso grande Planeta Azul';
+      case '4':
+        return 'O grande Planeta Vermelho';
+      case '5':
+        return 'O maior planeta do Sistema Solar';
+      case '6':
+        return 'O planeta com mais Luas';
+      case '7':
+        return 'O planeta mais frio ';
+      case '8':
+        return 'O último planeta do sistema solar';
+      case '9':
+        return 'O planeta Anão ';
+      default:
+        return '';
+    }
+  }
+
     String? get subtitle => _stringSub(id: id[0]);
 
     static String? _stringSub({required String id}) {

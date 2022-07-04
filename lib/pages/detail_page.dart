@@ -104,9 +104,9 @@ class _DetailPageState extends State<DetailPage> {
                             SizedBox(height: 10),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
                                 Text(
-                                  'The planet with the most moons',
+                                  widget.planet.description!,
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
