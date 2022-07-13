@@ -16,23 +16,23 @@ class _GetStartedPageState extends State<GetStartedPage> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          /*image: DecorationImage(
+          image: DecorationImage(
             image: AssetImage(
-              'assets/astronauta_1.jpg',
+              'assets/background/bg.png',
             ),
             fit: BoxFit.cover,
-          ),*/
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: const [
-              Color.fromARGB(255, 109, 96, 158),
-              Color.fromARGB(255, 77, 64, 122),
-              Color.fromARGB(255, 48, 39, 83),
-              Color.fromARGB(255, 37, 27, 77),
-            ],
-            stops: const [0.1, 0.4, 0.7, 0.9],
           ),
+          // gradient: LinearGradient(
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          //   colors: const [
+          //     Color.fromARGB(255, 109, 96, 158),
+          //     Color.fromARGB(255, 77, 64, 122),
+          //     Color.fromARGB(255, 48, 39, 83),
+          //     Color.fromARGB(255, 37, 27, 77),
+          //   ],
+          //   stops: const [0.1, 0.4, 0.7, 0.9],
+          // ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -40,6 +40,8 @@ class _GetStartedPageState extends State<GetStartedPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Image.asset('assets/background/astronauta.png'),
+              SizedBox(height: 60),
               ListTile(
                 title: Padding(
                   padding:
@@ -64,7 +66,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 30),
               SizedBox(
                 height: 70,
                 child: ElevatedButton(
@@ -108,7 +110,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
                   );
                 },
               ),
-              SizedBox(height: 70),
+              SizedBox(height: 30),
             ],
           ),
         ),

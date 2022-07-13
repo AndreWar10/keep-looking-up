@@ -125,10 +125,6 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, idx) => Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          //Text(list[idx].id),
-                          //Text(list[idx].name),
-                          //SvgPicture.network(list[idx].image, height: 120),
-
                           PlanetItemWidget(planet: list[idx], index: idx)
                         ],
                         //idx do index

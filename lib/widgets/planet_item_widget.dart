@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solarsystem/models/planets_model.dart';
 import 'package:solarsystem/pages/detail_page.dart';
 
@@ -13,6 +14,7 @@ class PlanetItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String planeta = planet.name;
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -82,11 +84,13 @@ class PlanetItemWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18),
-            child: SvgPicture.network(
-              planet.image, 
-              allowDrawingOutsideViewBox: true,             
-              height: 120,
-            ),
+            child: 
+            Image.asset('assets/planets/$planeta.png'),
+            // SvgPicture.network(
+            //   planet.image, 
+            //   allowDrawingOutsideViewBox: true,             
+            //   height: 120,
+            // ),
           ),
         ],
       ),
