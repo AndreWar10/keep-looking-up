@@ -12,10 +12,10 @@ import 'package:solarsystem/provider/google_sign_in.dart';
 import 'pages/get_started_page.dart';
 
 //Future<void> main() async {
-  Future main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  
+
   SystemChrome.setPreferredOrientations([
     //vai funcionar apenas na vertical
     DeviceOrientation.portraitUp,
