@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "768804098620",
-    "project_id": "solarsystem-120a0",
-    "storage_bucket": "solarsystem-120a0.appspot.com"
+    "project_number": "985886232242",
+    "project_id": "solarsystem-v1",
+    "storage_bucket": "solarsystem-v1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:768804098620:android:8377ec132d35fa1a90e939",
+        "mobilesdk_app_id": "1:985886232242:android:7795e1ea6739ec4ff503ab",
         "android_client_info": {
           "package_name": "com.example.solarsystem"
         }
       },
       "oauth_client": [
         {
-          "client_id": "768804098620-m1hu53ii8ra8nrpv6nojafv7u99qeo8b.apps.googleusercontent.com",
+          "client_id": "985886232242-5bhtqejbdicg946doman4l8auti7jma0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCsYuFtoebvEtVd0sccDEgtuK5fqKlQJDI"
+          "current_key": "AIzaSyDe_cgmGmc-hiL74LLoxKUESEIbbASHpKo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "768804098620-m1hu53ii8ra8nrpv6nojafv7u99qeo8b.apps.googleusercontent.com",
+              "client_id": "985886232242-5bhtqejbdicg946doman4l8auti7jma0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

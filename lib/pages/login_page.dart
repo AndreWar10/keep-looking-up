@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:solarsystem/controllers/login_controller.dart';
+import 'package:solarsystem/pages/home_page.dart';
 import 'package:solarsystem/pages/register_page.dart';
+import 'package:solarsystem/provider/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,17 +17,19 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _checkvalue = false;
   bool _showPassword = false;
-  // late final controller = LoginController(onSucessLogin: () {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => HomePage(),
-  //     ),
-  //   );
-  // }, onUpdate: () {
-  //   setState(() {});
-  // });
-  final LoginController _controller = LoginController();
+
+  late final controller = LoginController(onSucessLogin: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomePage(),
+      ),
+    );
+  }, onUpdate: () {
+    setState(() {});
+  });
+
+  //final LoginController _controller = LoginController(onSucessLogin: () {  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
           reverse: true,
           child: Center(
             child: Form(
-              //key: controller.formkey,
+              key: controller.formkey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -84,10 +89,10 @@ class _LoginPageState extends State<LoginPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20.0, top: 4),
                         child: TextFormField(
-                          onChanged: _controller.setLogin,
-                          // validator: (value) =>
-                          //     controller.validacaoEmail(value),
-                          // onSaved: (value) => controller.email = value,
+                          //onChanged: _controller.setLogin,
+                          validator: (value) =>
+                              controller.validacaoEmail(value),
+                          onSaved: (value) => controller.email = value,
                           decoration: InputDecoration(
                               border: InputBorder.none, hintText: 'Email'),
                         ),
@@ -112,10 +117,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20.0, top: 4),
                         child: TextFormField(
-                          // validator: (value) =>
-                          //     controller.validacaoSenha(value),
-                          // onSaved: (value) => controller.senha = value,
-                          onChanged: _controller.setPass,
+                          validator: (value) =>
+                              controller.validacaoSenha(value),
+                          onSaved: (value) => controller.senha = value,
 
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -171,9 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: SizedBox(
                       height: 75,
-                      child: 
-                      
-                      ElevatedButton(
+                      child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -186,31 +188,11 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         onPressed: () {
-                          _controller.auth().then(
-                            (result) {
-                              //se autenticação: true
-                              if (result) {
-                                //print('sucess');
-                                Navigator.of(context)
-                                    .pushReplacementNamed('/home');
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content:
-                                        const Text('Falha ao realizar login'),
-                                    duration: const Duration(seconds: 5),
-                                  ),
-                                );
-                              }
-                            },
-                          );
-
-                          // if(controller.validate()){
-                          //   controller.login();
-                          // }
-                          // else {
-                          //   print('erro');
-                          // }
+                          if (controller.validate()) {
+                            controller.login();
+                          } else {
+                            print('erro');
+                          }
                         },
                         child: Text(
                           ' Login',
@@ -255,7 +237,13 @@ class _LoginPageState extends State<LoginPage> {
                             50,
                           ),
                         ),
-                        onPressed: () {},
+                        //Google login
+                        onPressed: () {
+                          final provider = Provider.of<GoogleSignInProvider>(
+                              context,
+                              listen: false);
+                          provider.googleLogin();
+                        },
                         icon: FaIcon(
                           FontAwesomeIcons.google,
                           color: Colors.deepPurple,

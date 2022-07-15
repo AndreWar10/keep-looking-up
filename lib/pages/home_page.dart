@@ -1,10 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'package:solarsystem/controllers/planets_controller.dart';
 import 'package:solarsystem/models/planets_model.dart';
 import 'package:solarsystem/pages/loading_page.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:solarsystem/pages/splash_page.dart';
+import 'package:solarsystem/provider/google_sign_in.dart';
 import 'package:solarsystem/services/prefs_service.dart';
 import 'package:solarsystem/widgets/planet_item_widget.dart';
 
@@ -43,6 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -81,7 +87,19 @@ class _HomePageState extends State<HomePage> {
                             IconButton(
                                 onPressed: () {
                                   //botão de logout
+                                  final provider = 
+                                  Provider.of<GoogleSignInProvider>(context, listen: false);
+                                  provider.logout();
+
+                                  //GoogleSignIn.logOut;
+
+
+
+                                  FirebaseAuth.instance.signOut();
+
                                   PrefsService.logout();
+
+
                                   Navigator.of(context)
                                       //remove todas as paginas anteriores e volta para login
                                       .pushNamedAndRemoveUntil(

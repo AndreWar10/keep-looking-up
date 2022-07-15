@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:solarsystem/pages/container.dart';
 import 'package:solarsystem/pages/login_page.dart';
 import 'package:solarsystem/pages/register_page.dart';
 import 'package:solarsystem/widgets/block_button.dart';
@@ -97,7 +98,7 @@ SizedBox(height: 50,),
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginPage(),
+                        builder: (context) => ContainerPage(),
                       ),
                     );
                   },
