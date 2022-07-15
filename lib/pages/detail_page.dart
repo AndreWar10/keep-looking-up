@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:solarsystem/models/planets_model.dart';
 import 'package:solarsystem/widgets/detail_app_bar_widget.dart';
 import 'package:solarsystem/widgets/detail_cabecalho_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key, required this.planet}) : super(key: key);
@@ -28,9 +31,9 @@ class _DetailPageState extends State<DetailPage> {
       body: NotificationListener(
         onNotification: (notification) {
           setState(() {
-            if (scrollController.position.pixels > 300) {
+            if (scrollController.position.pixels > 360) {
               isOnTop = false;
-            } else if (scrollController.position.pixels <= 299) {
+            } else if (scrollController.position.pixels <= 359) {
               isOnTop = true;
             }
           });
@@ -81,24 +84,43 @@ class _DetailPageState extends State<DetailPage> {
                             ),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text('Overview',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    )),
+                              children: [
+                                Text(
+                                  'Overview',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ],
                             ),
                             SizedBox(height: 30),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(widget.planet.name,
-                                    style: TextStyle(
-                                      fontSize: 40,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.deepPurple,
-                                    )),
+                                Text(
+                                  widget.planet.name,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 44,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                                Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 2),
+                                  child: IconButton(
+                                    icon: Icon(Icons.share),
+                                    color: Color.fromARGB(255, 109, 108, 108),
+                                    iconSize: 40,
+                                    onPressed: () async {
+                                      var urlPreview =
+                                          widget.planet.video!.toString();
+                                      await Share.share(
+                                          'Veja que vídeo interessante que obtive gratuitamente no App da SolarSystem 👇 \n\n$urlPreview');
+                                    },
+                                  ),
+                                ),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -107,7 +129,7 @@ class _DetailPageState extends State<DetailPage> {
                               children: [
                                 Text(
                                   widget.planet.description!,
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -125,7 +147,11 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                     primary: Colors.black,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    final Uri url =
+                                        Uri.parse(widget.planet.video!);
+                                    await launchUrl(url);
+                                  },
                                   child: Row(
                                     children: const [
                                       Text('Assistir vídeo'),
@@ -137,8 +163,13 @@ class _DetailPageState extends State<DetailPage> {
                             ),
                             SizedBox(height: 15),
                             Wrap(
-                              children:[
-                                Text(widget.planet.subtitle!)
+                              children: [
+                                Text(
+                                  widget.planet.subtitle!,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                  ),
+                                )
                               ],
                             ),
                             SizedBox(height: 20),
@@ -147,52 +178,150 @@ class _DetailPageState extends State<DetailPage> {
                               children: [
                                 Text(
                                   widget.planet.features.diameter!,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 Spacer(),
                                 Text(
                                   widget.planet.features.sunDistance!,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const[
-                                Text(
-                                  'Diâmetro', 
-                                ),
-                                Spacer(),
-                                Text(
-                                  'Distância do Sol'
-                                ),
-                              ],
-                            ),
-                            
-                             SizedBox(height: 20),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.planet.features.satellites!.number.toString(),
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  'Diâmetro',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+                                  'Distância do Sol',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: 20),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.planet.features.satellites!.number
+                                      .toString(),
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 Spacer(),
                                 Text(
                                   widget.planet.features.orbitalPeriod!.last,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const[
+                              children: [
                                 Text(
-                                  'Satélites'
+                                  'Satélites',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                  ),
                                 ),
                                 Spacer(),
                                 Text(
-                                  'Duração do ano'
+                                  'Duração do ano',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: 20),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.planet.features.rotationDuration
+                                      .toString(),
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Spacer(),
+                                Text(
+                                  widget.planet.features.orbitalSpeed,
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Período de rotação',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+                                  'Velocidade da órbita',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: 20),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.planet.features.temperature.toString(),
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Spacer(),
+                                Text(
+                                  widget.planet.features.radius!,
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Temperatura',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+                                  'Raio do planeta',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),

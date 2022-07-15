@@ -4,49 +4,51 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-List<Planets> planetsFromJson(String str) => List<Planets>.from(json.decode(str).map((x) => Planets.fromJson(x)));
+List<Planets> planetsFromJson(String str) =>
+    List<Planets>.from(json.decode(str).map((x) => Planets.fromJson(x)));
 
-String planetsToJson(List<Planets>? data) => json.encode(List<dynamic>.from(data!.map((x) => x.toJson())));
+String planetsToJson(List<Planets>? data) =>
+    json.encode(List<dynamic>.from(data!.map((x) => x.toJson())));
 
 class Planets {
-    Planets({
-        required this.id,
-        required this.name,
-        required this.introduction,
-        required this.image,
-        required this.searchTags,
-        required this.features,
-        required this.geography,
-    });
+  Planets({
+    required this.id,
+    required this.name,
+    required this.introduction,
+    required this.image,
+    required this.searchTags,
+    required this.features,
+    required this.geography,
+  });
 
-    final String id;
-    final String name;
-    final String introduction;
-    final String image;
-    final List<String> searchTags;
-    final Features features;
-    final String geography;
+  final String id;
+  final String name;
+  final String introduction;
+  final String image;
+  final List<String> searchTags;
+  final Features features;
+  final String geography;
 
-    Planets copyWith({
-        String? id,
-        String? name,
-        String? introduction,
-        String? image,
-        List<String>? searchTags,
-        Features? features,
-        String? geography,
-    }) => 
-        Planets(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            introduction: introduction ?? this.introduction,
-            image: image ?? this.image,
-            searchTags: searchTags ?? this.searchTags,
-            features: features ?? this.features,
-            geography: geography ?? this.geography,
-        );
+  Planets copyWith({
+    String? id,
+    String? name,
+    String? introduction,
+    String? image,
+    List<String>? searchTags,
+    Features? features,
+    String? geography,
+  }) =>
+      Planets(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        introduction: introduction ?? this.introduction,
+        image: image ?? this.image,
+        searchTags: searchTags ?? this.searchTags,
+        features: features ?? this.features,
+        geography: geography ?? this.geography,
+      );
 
-    factory Planets.fromJson(Map<String, dynamic> json) => Planets(
+  factory Planets.fromJson(Map<String, dynamic> json) => Planets(
         id: json["id"],
         name: json["name"],
         introduction: json["introduction"],
@@ -54,9 +56,9 @@ class Planets {
         searchTags: List<String>.from(json["searchTags"].map((x) => x)),
         features: Features.fromJson(json["features"]),
         geography: json["geography"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "introduction": introduction,
@@ -64,13 +66,40 @@ class Planets {
         "searchTags": List<dynamic>.from(searchTags.map((x) => x)),
         "features": features.toJson(),
         "geography": geography,
-    };
+      };
 
+  String? get video => _video(id: id[0]);
 
+  static String? _video({required String id}) {
+    switch (id) {
+      case '0':
+        return 'https://www.youtube.com/watch?v=nAdj9an6N24';
+      case '1':
+        return 'https://www.youtube.com/watch?v=Nt1roYm0jPQ';
+      case '2':
+        return 'https://www.youtube.com/watch?v=-FJ34qWCSYY';
+      case '3':
+        return 'https://www.youtube.com/watch?v=lEePi92HCuI';
+      case '4':
+        return 'https://www.youtube.com/watch?v=ImpreapHhHY';
+      case '5':
+        return 'https://www.youtube.com/watch?v=NP0ymdPeW7w';
+      case '6':
+        return 'https://www.youtube.com/watch?v=i0YzfunCz3A';
+      case '7':
+        return 'https://www.youtube.com/watch?v=e8bdtCgCoNY';
+      case '8':
+        return 'https://www.youtube.com/watch?v=xO-fBNKjOzs';
+      case '9':
+        return 'https://www.youtube.com/watch?v=-rG1e3FQUpI';
+      default:
+        return '';
+    }
+  }
 
-    String? get description => _stringDes(id: id[0]);
+  String? get description => _stringDes(id: id[0]);
 
-    static String? _stringDes({required String id}) {
+  static String? _stringDes({required String id}) {
     switch (id) {
       case '0':
         return 'Estrela Central do Sistema Solar';
@@ -97,9 +126,9 @@ class Planets {
     }
   }
 
-    String? get subtitle => _stringSub(id: id[0]);
+  String? get subtitle => _stringSub(id: id[0]);
 
-    static String? _stringSub({required String id}) {
+  static String? _stringSub({required String id}) {
     switch (id) {
       case '0':
         return 'O Sol é a estrela central do Sistema Solar. Todos os outros corpos do Sistema Solar, como planetas, planetas anões, asteroides, cometas e poeira, bem como todos os satélites associados a estes corpos, giram ao seu redor.';
@@ -126,9 +155,9 @@ class Planets {
     }
   }
 
-    String? get resume => _string(id: id[0]);
+  String? get resume => _string(id: id[0]);
 
-    static String? _string({required String id}) {
+  static String? _string({required String id}) {
     switch (id) {
       case '0':
         return 'É a estrela central do Sistema Solar. Todos os outros corpos';
@@ -145,7 +174,7 @@ class Planets {
       case '6':
         return 'Saturno é o sexto planeta a partir do Sol e o segundo ';
       case '7':
-        return 'Urano é o sétimo planeta a partir do Sol e o terceiro maior';
+        return 'Urano é o sétimo planeta a partir do Sol e o terceiro ';
       case '8':
         return 'Netuno ou Neptuno é o oitavo planeta do Sistema Solar, o ';
       case '9':
@@ -155,81 +184,109 @@ class Planets {
     }
   }
 
+  Color? get baseColor => _color(id: id[0]);
 
-    Color? get baseColor => _color(id: id[0]);
-
-    static Color? _color({required String id}) {
+  static Color? _color({required String id}) {
     switch (id) {
       case '0':
-        return Color.fromARGB(255, 238, 188, 23);
+        return Color(0xFFb17c0c);
       case '1':
-        return Color.fromARGB(255, 148, 148, 148);
+        return Color(0xFF6c6c6c);
       case '2':
-        return Color.fromARGB(255, 255, 201, 121);
+        return Color(0xFF733508);
       case '3':
-        return Color.fromARGB(255, 121, 231, 186);
+        return Color(0xFF055643);
       case '4':
-        return Color.fromARGB(255, 243, 138, 52);
+        return Color(0xFF431b10);
       case '5':
-        return Color.fromARGB(255, 234, 149, 255);
+        return Color(0xFF402009);
       case '6':
-        return Color.fromARGB(255, 253, 255, 139);
+        return Color(0xFF6d4c23);
       case '7':
-        return Color.fromARGB(255, 133, 210, 255);
+        return Color.fromARGB(255, 1, 59, 82);
       case '8':
-        return Color.fromARGB(255, 173, 137, 255);
+        return Color(0xFF1a1d4d);
       case '9':
-        return Color.fromARGB(255, 184, 195, 252);
+        return Color(0xFF694e31);
       default:
-        return Color.fromARGB(255, 255, 0, 179);
+        return Color(0xFFFFFFFF);
     }
   }
 
+  Color? get baseColor2 => _color2(id: id[0]);
+
+  static Color? _color2({required String id}) {
+    switch (id) {
+      case '0':
+        return Color(0xFFf9e831);
+
+      case '1':
+        return Color(0xFFe8b99d);
+      case '2':
+        return Color(0xFFdd8a3c);
+      case '3':
+        return Color(0xFF2f308e);
+      case '4':
+        return Color(0xFFd16b3a);
+      case '5':
+        return Color(0xFFae8b56);
+      case '6':
+        return Color(0xFFf0ca81);
+      case '7':
+        return Color.fromARGB(255, 56, 175, 230);
+      case '8':
+        return Color(0xFF7187db);
+      case '9':
+        return Color(0xFFe6bd87);
+      default:
+        return Color(0xFFFFFFFF);
+    }
+  }
 }
 
 class Features {
-    Features({
-        required this.orbitalPeriod,
-        required this.orbitalSpeed,
-        required this.rotationDuration,
-        required this.radius,
-        required this.diameter,
-        required this.sunDistance,
-        required this.satellites,
-        required this.temperature,
-    });
+  Features({
+    required this.orbitalPeriod,
+    required this.orbitalSpeed,
+    required this.rotationDuration,
+    required this.radius,
+    required this.diameter,
+    required this.sunDistance,
+    required this.satellites,
+    required this.temperature,
+  });
 
-    final List<String>? orbitalPeriod;
-    final String orbitalSpeed;
-    final String? rotationDuration;
-    final String? radius;
-    final String? diameter;
-    final String? sunDistance;
-    final Satellites? satellites;
-    final String? temperature;
+  final List<String>? orbitalPeriod;
+  final String orbitalSpeed;
+  final String? rotationDuration;
+  final String? radius;
+  final String? diameter;
+  final String? sunDistance;
+  final Satellites? satellites;
+  final String? temperature;
 
-    Features copyWith({
-        List<String>? orbitalPeriod,
-        String? orbitalSpeed,
-        String? rotationDuration,
-        String? radius,
-        String? diameter,
-        String? sunDistance,
-        Satellites? satellites,
-        String? temperature,
-    }) => 
-        Features(
-            orbitalPeriod: orbitalPeriod ?? this.orbitalPeriod,
-            orbitalSpeed: orbitalSpeed ?? this.orbitalSpeed,
-            rotationDuration: rotationDuration ?? this.rotationDuration,
-            radius: radius ?? this.radius,
-            diameter: diameter ?? this.diameter,
-            sunDistance: sunDistance ?? this.sunDistance,
-            satellites: satellites ?? this.satellites,
-            temperature: temperature ?? this.temperature,
-        );
+  Features copyWith({
+    List<String>? orbitalPeriod,
+    String? orbitalSpeed,
+    String? rotationDuration,
+    String? radius,
+    String? diameter,
+    String? sunDistance,
+    Satellites? satellites,
+    String? temperature,
+  }) =>
+      Features(
+        orbitalPeriod: orbitalPeriod ?? this.orbitalPeriod,
+        orbitalSpeed: orbitalSpeed ?? this.orbitalSpeed,
+        rotationDuration: rotationDuration ?? this.rotationDuration,
+        radius: radius ?? this.radius,
+        diameter: diameter ?? this.diameter,
+        sunDistance: sunDistance ?? this.sunDistance,
+        satellites: satellites ?? this.satellites,
+        temperature: temperature ?? this.temperature,
+      );
 
-    factory Features.fromJson(Map<String, dynamic> json) => Features(
+  factory Features.fromJson(Map<String, dynamic> json) => Features(
         orbitalPeriod: List<String>.from(json["orbitalPeriod"].map((x) => x)),
         orbitalSpeed: json["orbitalSpeed"],
         rotationDuration: json["rotationDuration"],
@@ -238,9 +295,9 @@ class Features {
         sunDistance: json["sunDistance"],
         satellites: Satellites.fromJson(json["satellites"]),
         temperature: json["temperature"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "orbitalPeriod": List<dynamic>.from(orbitalPeriod!.map((x) => x)),
         "orbitalSpeed": orbitalSpeed,
         "rotationDuration": rotationDuration,
@@ -249,34 +306,34 @@ class Features {
         "sunDistance": sunDistance,
         "satellites": satellites!.toJson(),
         "temperature": temperature,
-    };
+      };
 }
 
 class Satellites {
-    Satellites({
-        required this.number,
-        required this.names,
-    });
+  Satellites({
+    required this.number,
+    required this.names,
+  });
 
-    final int number;
-    final List<String> names;
+  final int number;
+  final List<String> names;
 
-    Satellites copyWith({
-        int? number,
-        List<String>? names,
-    }) => 
-        Satellites(
-            number: number ?? this.number,
-            names: names ?? this.names,
-        );
+  Satellites copyWith({
+    int? number,
+    List<String>? names,
+  }) =>
+      Satellites(
+        number: number ?? this.number,
+        names: names ?? this.names,
+      );
 
-    factory Satellites.fromJson(Map<String, dynamic> json) => Satellites(
+  factory Satellites.fromJson(Map<String, dynamic> json) => Satellites(
         number: json["number"],
         names: List<String>.from(json["names"].map((x) => x)),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "number": number,
         "names": List<dynamic>.from(names.map((x) => x)),
-    };
+      };
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:solarsystem/firebase/auth.dart';
-import 'package:solarsystem/firebase/google.dart';
+
 import 'package:solarsystem/pages/home_page.dart';
 import 'package:solarsystem/pages/login_page.dart';
 import 'package:solarsystem/pages/register_page.dart';
@@ -10,18 +8,21 @@ import 'package:solarsystem/pages/splash_page.dart';
 import 'package:solarsystem/pages/terms_and_conditions_page.dart';
 import 'pages/get_started_page.dart';
 
-void main() {
+//Future<void> main() async {
+  void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     //vai funcionar apenas na vertical
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(ChangeNotifierProvider(
-      create: (context) => ApplicationState(),
-      builder: (context, _) => MyApp(),
-    ));
-  }
+  // runApp(ChangeNotifierProvider(
+  //   create: (context) => ApplicationState(),
+  //   builder: (context, _) => MyApp(),
+  // ));
+  //await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       title: 'Keep Looking Up',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      initialRoute: '/start',
+      initialRoute: '/splash',
       routes: {
         '/splash': (_) => SplashPage(),
         '/start': (_) => const GetStartedPage(),
@@ -41,7 +42,6 @@ class MyApp extends StatelessWidget {
         '/terms': (_) => const TermsPage(),
         '/login': (_) => const LoginPage(),
         '/home': (_) => const HomePage(),
-        '/google': (_) => const GooglePage(),
       },
     );
   }

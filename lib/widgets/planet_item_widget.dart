@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:solarsystem/models/planets_model.dart';
 import 'package:solarsystem/pages/detail_page.dart';
 
@@ -29,11 +28,17 @@ class PlanetItemWidget extends StatelessWidget {
             child: Container(
               height: 240,
               decoration: BoxDecoration(
-                  color: planet.baseColor!.withOpacity(0.8),
+                  gradient: LinearGradient(
+                    colors: [planet.baseColor!, planet.baseColor2!],
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                  ),
+                  //color: planet.baseColor!.withOpacity(0.8),
                   borderRadius: BorderRadius.circular(26)),
               child: Padding(
                 padding: const EdgeInsets.all(15),
                 child: SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -45,10 +50,11 @@ class PlanetItemWidget extends StatelessWidget {
                           Flexible(
                             child: Text(
                               planet.name,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22),
+                              style: GoogleFonts.montserrat(
+                                fontSize: 22,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           Text(
@@ -67,15 +73,67 @@ class PlanetItemWidget extends StatelessWidget {
                         children: [
                           Text(
                             planet.resume!,
-                            style: TextStyle(
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12,
                               color: Colors.white,
-                              fontFamily: 'Purrisima',
                             ),
                           )
                         ],
                       ),
-                      SizedBox(height: 25,),
-                      Row(children:const [Text('Saiba mais', style: TextStyle(color: Colors.white),),],)
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // Row(
+                      //   children:  [
+                      //     Text(
+                      //       'Saiba mais',
+                      //       style: GoogleFonts.montserrat(
+                      //     fontSize: 12,
+                      //     //fontWeight: FontWeight.bold,
+                      //     color: Colors.white,
+                      //   )
+                      //     ),
+                      //   ],
+                      // )
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(15.0, 20.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          primary: Color.fromARGB(255, 233, 233, 233),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => DetailPage(planet: planet),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 13),
+                              child: Text(
+                                'Saiba mais',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 1),
+                              child: Icon(
+                                Icons.play_arrow,
+                                size: 14,
+                                color: Color.fromARGB(255, 49, 49, 49),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -84,11 +142,14 @@ class PlanetItemWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18),
-            child: 
-            Image.asset('assets/planets/$planeta.png'),
+            child: Image.asset(
+              'assets/planets/$planeta.png',
+              width: 115,
+              height: 115,
+            ),
             // SvgPicture.network(
-            //   planet.image, 
-            //   allowDrawingOutsideViewBox: true,             
+            //   planet.image,
+            //   allowDrawingOutsideViewBox: true,
             //   height: 120,
             // ),
           ),

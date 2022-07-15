@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // ignore: depend_on_referenced_packages
 import 'package:lottie/lottie.dart';
-import 'package:solarsystem/pages/get_started_page.dart';
+import 'package:solarsystem/services/prefs_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -16,27 +16,33 @@ class SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-    Future.delayed(Duration(seconds: 6)).then((_) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => GetStartedPage()));
-    });
+
+ Future.wait([
+      PrefsService.isAuth(),
+      Future.delayed(Duration(seconds: 6))])
+      .then((value) => value[0] //se o user ja foi autenticado ele retorna um boll <0>
+        ? Navigator.of(context).pushReplacementNamed('/home')
+        : Navigator.of(context).pushReplacementNamed('/start'));
+
+    //Tempo de espera quando inicia o App, e depois direcionar para a primeira pagina do App, usando
+    //pushReplacementNamed para nao dar ao usuario a opção de voltar a tela inicial, sobrepondo a Splash
+
+    // Future.delayed(Duration(seconds: 3)).then(
+    //   (_) => Navigator.of(context).pushReplacementNamed('/login'),
+    // );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: const [
-            Color.fromARGB(255, 109, 96, 158),
-            Color.fromARGB(255, 77, 64, 122),
-            Color.fromARGB(255, 48, 39, 83),
-            Color.fromARGB(255, 37, 27, 77),
-          ],
-          stops: const [0.1, 0.4, 0.7, 0.9],
-        )),
+       decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/background/bg.png', 
+            ),
+            fit: BoxFit.cover,
+          ),),
+        
         child: Center(
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -46,3 +52,10 @@ class SplashPageState extends State<SplashPage> {
         ));
   }
 }
+
+
+
+
+
+
+

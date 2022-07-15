@@ -15,7 +15,7 @@ class DetailAppBarWidget extends StatelessWidget {
     return SliverAppBar(
       pinned: true, //appBar fixa
       elevation: 0,
-      backgroundColor: planet.baseColor,
+      backgroundColor: planet.baseColor2,
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);

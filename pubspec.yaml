@@ -31,8 +31,12 @@ dependencies:
     sdk: flutter
   dio:
   http: ^0.13.4  
+  flutter_typeahead: ^4.0.0
+  faker: ^2.0.0
   animated_splash_screen:
+  share_plus: ^4.0.10
   flutter_svg: ^1.1.1
+  shared_preferences: ^2.0.8
   url_launcher: 
   google_fonts:
   #icon google
@@ -44,7 +48,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^1.19.1
   firebase_auth: ^3.4.1
-  cloud_firestore: ^3.2.1
   provider: ^6.0.3
 
 dev_dependencies:
@@ -59,7 +62,12 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   lottie: ^1.3.0
   cached_network_image:    
-  shared_preferences: ^2.0.8
+  flutter_launcher_icons: ^0.9.3
+
+flutter_icons:
+  image_path: "assets/logo/planet.png"
+  android: true
+  ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -74,6 +82,12 @@ flutter:
     - assets/background/bg.png
     - assets/background/bg-2.png
     - assets/background/bg-3.png
+    - assets/background/planeta.png
+    - assets/background/satelite.png
+    - assets/astronauta/celular.png
+    - assets/astronauta/cadastro.png
+    - assets/astronauta/trabalhando.png
+    - assets/logo/planet.png
     - assets/planets/Mercúrio.png
     - assets/planets/Vênus.png
     - assets/planets/Terra.png

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solarsystem/models/planets_model.dart';
 
 class DetailFotoListWidget extends StatelessWidget {
@@ -9,11 +8,13 @@ class DetailFotoListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String planeta = planet.name;
+
     return Align(
       alignment: Alignment.center,
-      child: SvgPicture.network(
-        planet.image,
-        height: 250,
+      child: Image.asset(
+        'assets/planets/$planeta.png',
+        height: 280,
       ),
     );
   }

@@ -13,7 +13,7 @@ class TermsPage extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                'assets/meme.jpeg',
+                'assets/astronauta/trabalhando.png',
               ),
             ),
           ),

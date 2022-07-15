@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:solarsystem/pages/login_page.dart';
 import 'package:solarsystem/pages/register_page.dart';
 import 'package:solarsystem/widgets/block_button.dart';
@@ -18,7 +19,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              'assets/background/bg.png',
+              'assets/background/bg-2.png', 
             ),
             fit: BoxFit.cover,
           ),
@@ -38,16 +39,27 @@ class _GetStartedPageState extends State<GetStartedPage> {
           padding: const EdgeInsets.all(18.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.asset('assets/background/astronauta.png'),
-              SizedBox(height: 60),
+              SizedBox(height: 40,),
+              Padding(
+                padding: const EdgeInsets.only(left: 60),
+                child: AnimatedImage(),
+              ),
+SizedBox(height: 50,),
+              Padding(
+                padding: const EdgeInsets.only(right: 220),
+                child: Image.asset('assets/background/planeta.png', width: 100, height: 100,),
+              ),
+
+
+              SizedBox(height: 0),
               ListTile(
                 title: Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                   child: Text(
-                    'espace',
+                    '',
                     style: TextStyle(
                       fontSize: 36,
                       color: Colors.white,
@@ -55,14 +67,14 @@ class _GetStartedPageState extends State<GetStartedPage> {
                     ),
                   ),
                 ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                subtitle: Center(
                   child: Text(
-                    "Let's explore outer space",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white,
-                    ),
+                    "Let's explore the galaxy ? ",
+                   style: GoogleFonts.montserrat(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white
+                  ),
                   ),
                 ),
               ),
@@ -110,12 +122,43 @@ class _GetStartedPageState extends State<GetStartedPage> {
                   );
                 },
               ),
-              SizedBox(height: 30),
             ],
           ),
         ),
       ),
       //Text('astronauta')
     );
+  }
+}
+
+class AnimatedImage extends StatefulWidget {
+  const AnimatedImage({Key? key}) : super(key: key);
+
+  @override
+  State<AnimatedImage> createState() => _AnimatedImageState();
+}
+
+class _AnimatedImageState extends State<AnimatedImage>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(vsync: this,
+  duration: const Duration(seconds: 3),
+  )..repeat(reverse: true);
+  late final Animation<Offset> _animation = Tween(begin: Offset.zero, end: Offset(0, 0.08),).animate(_controller);
+
+  
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _animation,
+      child: Image.asset('assets/background/astronauta.png', width: 300, height: 300,),
+    );
+    
   }
 }

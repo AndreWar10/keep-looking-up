@@ -27,30 +27,31 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(height: 70),
-                  Icon(
-                    Icons.app_registration_outlined,
-                    size: 100,
+
+                  Image.asset(
+                    'assets/astronauta/cadastro.png',
+                    width: 150,
+                    height: 150,
                   ),
-                  SizedBox(height: 25),
 
                   //Hello
                   Text(
                     'Sign Up',
-                    style: GoogleFonts.bebasNeue(
-                      fontSize: 52,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 46,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 10),
                   //Welcome Back
                   Text(
-                    "Welcome, tell me who are you!",
-                    style: TextStyle(
-                      fontFamily: 'OpenSans',
-                      fontSize: 20,
+                    "Welcome, let's make your registration ",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
                     ),
                   ),
                   SizedBox(
-                    height: 55,
+                    height: 45,
                   ),
 
                   //Email TextField
@@ -194,12 +195,23 @@ class _RegisterPageState extends State<RegisterPage> {
                                 _checkvalue = value!;
                               });
                             }),
-                        Text('By signing up, you are agree to our',
-                            style: TextStyle(fontSize: 13)),
+                        Text(
+                          'By signing up, you are agree to our',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 11,
+                          ),
+                        ),
                         Expanded(
                           child: TextButton(
-                            child: Text('Terms & Conditions',
-                                style: TextStyle(fontSize: 12)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 5),
+                              child: Text(
+                                'Terms & Conditions',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 11,
+                                ),
+                              ),
+                            ),
                             onPressed: () {
                               Navigator.push(
                                 context,
@@ -238,7 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         onPressed: () {},
                         child: Text(
                           ' Continue',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
@@ -256,12 +268,19 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       Text(
                         'Joined us before?',
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       TextButton(
-                        child: Text('Sign In', style: TextStyle(fontSize: 14)),
+                        child: Text(
+                          'Sign In',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         onPressed: () {
                           Navigator.push(
                             context,
