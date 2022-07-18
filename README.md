@@ -1,12 +1,12 @@
-<div align="center"> 
+<div> 
   <strong>🪐Solar System </strong>
 </div>
 
-<div align="center">
-Aplicação desenvolvida em Flutter com intuito de trabalhar conexão com API/Refatoração/Padrões_de_Projeto/Firebase/Animações/Local_Storage/Patterns.
+<div>
+Aplicação desenvolvida em Flutter com intuito de trabalhar conexão com API, Refatoração, Padrões_de_Projeto, Firebase, Animações, Local_Storage, Patterns.
 </div>  
   
-<div align="center">  
+<div>  
   O App é composto de uma animação inicial (Splash Page), um tela de Apresentação com botões de Login/Registro, uma tela inicial que lista os planetas pegando as informações diretamente da API, e uma tela de detalhes, com informações personalizadas de cada planeta/corpo celeste. O login está sendo autenticado pelo Firebase com e-mail e senha ou pela conta do Google, além disso armazeno o login no LocalStorage do aparelho para não ter que fazer login a cada vez que abre o App. Implantei bastante regras de UI/UX Design, Animação na tela de apresentação e Design do App. 
  </div>
 
@@ -31,7 +31,7 @@ Aplicação desenvolvida em Flutter com intuito de trabalhar conexão com API/Re
    <strong>05. Home Page + Search:</strong> Listagem dos planetas + filtro por nome.
 </div>
 <div align="left"> 
-   <strong>06. Details Page:</strong> Tela que contém informações personalizadas do planeta clicado.
+   <strong>06. Details Page:</strong> Tela que contém informações personalizadas do planeta clicado (Compartilhamento + Vídeo).
 </div>
 
   
@@ -40,13 +40,29 @@ Aplicação desenvolvida em Flutter com intuito de trabalhar conexão com API/Re
   <table align="center">
   <tr>
     <td>
-      <img src="https://github.com/AndreWar10/movie-app/blob/master/lib/photos/WhatsApp%20Image%202022-06-13%20at%2018.30.15.jpeg" alt="Home-Page - version mobile" height="500px">
+      <img src="https://github.com/AndreWar10/solar-system-app/blob/master/assets/screens/getstarted_page.jpeg" alt="Search - version mobile" height="500px">
     </td>
     <td>
-      <img src="https://github.com/AndreWar10/movie-app/blob/master/lib/photos/WhatsApp%20Image%202022-06-13%20at%2018.30.14%20(2).jpeg" alt="Search - version mobile" height="500px">
+      <img src="https://github.com/AndreWar10/solar-system-app/blob/master/assets/screens/login_page.jpeg" alt="Details Page - version mobile" height="500px">
     </td>
     <td>
-      <img src="https://github.com/AndreWar10/movie-app/blob/master/lib/photos/WhatsApp%20Image%202022-06-13%20at%2018.30.14%20(1).jpeg" alt="Details Page - version mobile" height="500px">
+      <img src="https://github.com/AndreWar10/solar-system-app/blob/master/assets/screens/register_page.jpeg" alt="Details Page - version mobile" height="500px">
+    </td>
+     
+  </table>
+  
+#
+  
+  <table align="center">
+  <tr>
+    <td>
+      <img src="https://github.com/AndreWar10/solar-system-app/blob/master/assets/screens/home_page2.jpeg" alt="Details Page - version mobile" height="500px">
+    </td>
+    <td>
+      <img src="https://github.com/AndreWar10/solar-system-app/blob/master/assets/screens/home_page.jpeg" alt="Details Page - version mobile" height="500px">
+    </td>
+    <td>
+      <img src="https://github.com/AndreWar10/solar-system-app/blob/master/assets/screens/detail_page.jpeg" alt="Details Page - version mobile" height="500px">
     </td>
     
   </table>
@@ -58,9 +74,11 @@ Aplicação desenvolvida em Flutter com intuito de trabalhar conexão com API/Re
 <table align="center">
  <tr>
   <td>Framework Flutter</td>  
-  <td>Dio Package</td>
-  <td>MVC Pattern</td>
+  <td>Firebase </td>
+  <td>Http Package</td>
   <td>Lottie Animation</td>
-  <td>Decorator Patter </td>
+  <td>Url+Share Plus</td>
+ 
+  
  </tr>
 </table>
